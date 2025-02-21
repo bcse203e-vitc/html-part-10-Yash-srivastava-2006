@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country-State Selection</title>
+</head>
+<body>
+
+    <h2>Select Country and State</h2>
+
+    <label for="country">Choose a country:</label>
+    <select id="country">
+        <option value="">--Select Country--</option>
+        <option value="USA">USA</option>
+        <option value="India">India</option>
+        <option value="UK">UK</option>
+    </select>
+
+    <label for="state">Choose a state:</label>
+    <select id="state">
+        <option value="">--Select State--</option>
+    </select>
+
+    <script>
+        const c = document.getElementById('country');
+        const s = document.getElementById('state');
+
+        const cs = {
+            USA: ['California', 'Texas', 'New York'],
+            India: ['Maharashtra', 'Delhi', 'Karnataka'],
+            UK: ['England', 'Scotland', 'Wales']
+        };
+
+        c.addEventListener('change', function() {
+            const country = c.value;
+            s.innerHTML = '<option value="">--Select State--</option>';
+            if (country && cs[country]) {
+                cs[country].forEach(function(state) {
+                    const o = document.createElement('option');
+                    o.value = state;
+                    o.textContent = state;
+                    s.appendChild(o);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
