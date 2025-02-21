@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layered Image Gallery</title>
+    <style>
+        .gallery-container {
+            position: relative;
+            width: 800px;
+            height: 500px;
+        }
+        .image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: z-index 0.3s ease-in-out;
+        }
+        
+        .img1 {
+            top: 50px;
+            left: 100px;
+            height: 200px;
+            width: 300px;
+        }
+        
+        .img2 {
+            height: 200px;
+            width: 300px;
+            bottom: 50px;
+            right: 100px;
+        }
+        
+        .img3 {
+            top: 100px;
+            left: 200px;
+            height: 200px;
+            width: 300px;
+        }
+        
+        .image img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Layered Image Gallery</h2>
+
+    <div class="gallery-container">
+        <div class="image img1" id="img1" style="z-index: 1;" onclick="bringToFront('img1')">
+            <img src="https://thumbs.dreamstime.com/b/lonely-cherry-tree-seaside-rocks-d-artwork-35112983.jpg" alt="Image 1">
+        </div>
+        <div class="image img2" id="img2" style="z-index: 2;" onclick="bringToFront('img2')">
+            <img src="https://cdn.pixabay.com/photo/2017/06/30/11/17/tree-2458047_960_720.png" alt="Image 2">
+        </div>
+        <div class="image img3" id="img3" style="z-index: 3;" onclick="bringToFront('img3')">
+            <img src="https://th.bing.com/th/id/OIP.oDmQn8ncWbN8DJifU9YbrQHaEM?rs=1&pid=ImgDetMain" alt="Image 3">
+        </div>
+    </div>
+
+    <script>
+        function bringToFront(id) {
+            const images = document.querySelectorAll('.image');
+            let maxZIndex = 0;
+
+            // Find the current highest z-index
+            images.forEach(function(image) {
+                const zIndex = parseInt(window.getComputedStyle(image).zIndex);
+                maxZIndex = Math.max(maxZIndex, zIndex);
+            });
+
+            // Increment and set the clicked image to the highest z-index
+            document.getElementById(id).style.zIndex = maxZIndex + 1;
+        }
+    </script>
+
+</body>
+</html>
